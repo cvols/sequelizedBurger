@@ -1,0 +1,80 @@
+<div id="background">
+    <div class="row">
+        <div class="col s12 center custom-img">
+            <img src="/assets/img/burger-app.png" alt="Burger" class="img-responsive" height="300px" width="auto" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <h1 class="center header-font white-text">Eat-Da-Burger</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row custom-row">
+        <div class="col s6">
+            <h3 class="center header-font">UnEaten Burgers</h3>
+            <div class="collection">
+                {{#each burgers}} {{#unless devoured}}
+                <a class="collection-item custom-font modal-trigger" href="#modal">{{burger_name}}</a>
+                <div id="modal" class="modal">
+                    <div class="modal-content">
+                        <h4>Please select the customer's name who ate the {{burger_name}}</h4>
+                        {{#each customers}} {{customer_name}} {{/each}}
+                        <div class="row">
+                            <div class="input-field col offset-s3 s6">
+                                <select id="customer"></select>
+                            </div>
+                        </div>
+                        <div class="row row-input">
+                            <div class="col s12">
+                                <h4>Or enter new customer here</h4>
+                            </div>
+                            <div class="input-field col offset-s3 s6 center">
+                                <i class="material-icons prefix">mode_edit</i>
+                                <textarea id="customer" class="materialize-textarea" data-length="50"></textarea>
+                                <label for="customer">Customer</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="devour modal-action modal-close waves-effect waves-green btn-flat" data-id="{{id}}" data-nowdevoured="{{devoured}}">Submit</a>
+                    </div>
+                </div>
+                {{/unless}} {{/each}}
+            </div>
+        </div>
+
+        <div class="col s6">
+            <h3 class="center header-font">Eaten Burgers</h3>
+            <div class="collection">
+                {{#each burgers}} {{#if devoured}}
+                <a href="#!" class="delete collection-item custom-font" data-id="{{id}}">{{burger_name}}</a>
+                {{/if}} {{/each}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <form class="col s12">
+            <div class="row row-input">
+                <div class="input-field col offset-s3 s6 center">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <textarea id="icon_prefix" class="materialize-textarea" data-length="100"></textarea>
+                    <label for="icon_prefix">Burger</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="center">
+                    <button class="btn waves-effect waves-light z-depth-3" type="submit" name="action" id="submit">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                    <p class="flow-text white-text red center z-depth-5" id="validate">Please enter the name of the burger before you submit</p>
+                    <p class="flow-text center custom-btn-font">Enter a burger you want to eat then click the "Submit" button</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
